@@ -12,26 +12,29 @@
 
 // TEST FUNCTIONS
 function getMovieList(e) {
-    var omdbRequestURL = "https://omdbapi.com/?s=" + e.data.param0 + "&apikey=405ba6dc";
+    console.log("SUBMIT!");
+    e.preventDefault();
+    var omdbRequestURL = "https://omdbapi.com/?s=" + $("#user-search").val() + "&apikey=405ba6dc";
     var userData = e.data;
+
     fetch(omdbRequestURL)
         .then(function (res) {
+            console.log(res.status);
             return res.json();
         })
         .then(function(data) {
-            console.log(data[0].Title + " " + data[0].imdbID)
-            
-            // userData.add(imdbID, data[0].imdbID);
+            console.log(data);
+            console.log("Title:" + data.Search[0].Title + " " + data.Search[0].imdbID)
             
             // display results here
             // create HTML here
             $("<div/>", {
-                id: "search-result" + i
+                id: "movie-container"
                 // add classes here
-            }).appendTo("#movie-container");
+            }).appendTo("#col-container");
             
             // get movie info
-            for (var i = 0; i < 3; i++) {
+            for (var i = 0; i < data.Search.length; i++) {
                 // main card
                 $("<div/>", {
                     id: "card" + i,
@@ -47,8 +50,8 @@ function getMovieList(e) {
                     class: "image is-4by3"
                 }).appendTo("#card-image" + i);
                 $("<img/>", {
-                    src: data[i].Poster,
-                    alt: data[i].Title
+                    src: data.Search[i].Poster,
+                    alt: data.Search[i].Title
                 }).appendTo("#figure" + i);
                 // content container
                 $("<div/>", {
@@ -62,8 +65,9 @@ function getMovieList(e) {
                 // add movie title and stuff here
                 $("<p/>", {
                     // add style classes here
-                }).text(data[i].Title + data[i].Year).appendTo("#media" + i)
-
+                }).text(data.Search[i].Title + " " + data.Search[i].Year).appendTo("#media" + i);
+                userData.imdbID = data.Search[i].imdbID;
+                console.log("userData: " + userData.imdbID);
                 $("<button/>", {
                     id: "button" + i,
                     class: "button"
@@ -75,24 +79,29 @@ function getMovieList(e) {
 
 function getServices (e) {
     // Hide the cards continer
-    $("#movie-container").hide();
+    // $("#movie-container").hide();
 
-    fetch("https://gowatch.p.rapidapi.com/lookup/title/imdb_id", {
-	"method": "POST",
-	"headers": {
-		"content-type": "application/x-www-form-urlencoded",
-		"x-rapidapi-host": "gowatch.p.rapidapi.com",
-		"x-rapidapi-key": "f23c6f8922msh66c1e577a5d9a54p1f699djsn591541dac664"
-	},
-	"body": {
-		"id": e.data.imdbID, // check this
-		"type": "movie",
-		"country": "us"
-	}
-    })
-        .then(function(data) {
+    console.log("getServices");
+    console.log(e.data);
+
+    // fetch("https://gowatch.p.rapidapi.com/lookup/title/imdb_id", {
+	// "method": "POST",
+	// "headers": {
+	// 	"content-type": "application/x-www-form-urlencoded",
+	// 	"x-rapidapi-host": "gowatch.p.rapidapi.com",
+	// 	"x-rapidapi-key": "f23c6f8922msh66c1e577a5d9a54p1f699djsn591541dac664"
+	// },
+	// "body": {
+	// 	"id": e.data.imdbID, // check this
+	// 	"type": "movie",
+	// 	"country": "us"
+	// }
+    // })
+    //     .then(function(data) {
             
-        })
+    //     })
+
+    
     // now compare the results to the user selected filters (if any)
     // if it's not on the platform suggest the ones it's on
 
@@ -114,7 +123,6 @@ function redirect(e) {
 $(function() {
     console.log("Ready!");
     $("#btn").click({
-        param0: $("#user-search").val(),
         param1: $("#hulu").is(":checked"), 
         param2: $("#hbomax").is(":checked"),
         param3: $("#netflix").is(":checked"),
