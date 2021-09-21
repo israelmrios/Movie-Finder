@@ -1,7 +1,7 @@
 * {
     font-family: 'Russo One', sans-serif;
     font-size: 15px;
-    color: rgb(83, 115, 204);
+    color: rgb(255, 255, 255);
     
 }
 
@@ -14,8 +14,7 @@
 
 body {
     height: 100vh;
-    background: rgb(63,94,251);
-    background: linear-gradient(23deg, #a7b5f8 2%, rgb(168, 242, 255) 100%);  
+    background: linear-gradient(23deg, #9cbae0 2%, rgb(168, 242, 255) 100%);  
 }
 
 h1{
@@ -31,9 +30,10 @@ header {
 }
 p {
     padding-top: 2rem;
+    font-size: large;
     text-align: center;
     text-decoration: underline;
-    text-shadow: 1px 1px 1px rgb(43, 43, 43);
+    text-shadow: 1px .5px .5px rgb(43, 43, 43);
 }
 
 div.columns {
@@ -102,6 +102,7 @@ form.example input[type=text] {
     background: #62c0ff;
     background: #dffaff;
     box-shadow: 1px 1px 20px rgb(255, 255, 255);
+    transition: 0.1s;
   }
   
   /* Clear floats */
