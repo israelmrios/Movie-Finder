@@ -1,28 +1,28 @@
 * {
-    font-family: "krungthep";
+    font-family: 'Russo One', sans-serif;
     font-size: 15px;
     color: rgb(83, 115, 204);
+    
 }
 
 .title{
     text-align: center;
     font-size: 75px;
+    text-shadow: 2px .5px 5px rgb(43, 43, 43);
 }
-html {
-    /* background: linear-gradient(23deg, rgba(63,94,251,1) 2%, rgba(63,223,251,1) 100%);  */
-}
+
 
 body {
     height: 100vh;
-    /* background: rgb(63,94,251);
-    background: linear-gradient(23deg, rgba(63,94,251,1) 2%, rgba(63,223,251,1) 100%);   */
+    background: rgb(63,94,251);
+    background: linear-gradient(23deg, #a7b5f8 2%, rgb(168, 242, 255) 100%);  
 }
 
 h1{
     display: flex;
     align-content: center;
     justify-content: center;
-    font-family: "krungthep";
+    font-family: 'Russo One', sans-serif;
 }
 
 header {
@@ -33,6 +33,7 @@ p {
     padding-top: 2rem;
     text-align: center;
     text-decoration: underline;
+    text-shadow: 1px 1px 1px rgb(43, 43, 43);
 }
 
 div.columns {
@@ -53,6 +54,7 @@ div.checkers {
     padding: auto;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    text-shadow: 0px 0px 1px rgb(43, 43, 43);
     
 }
 
@@ -63,4 +65,52 @@ div.checkers {
     align-content: center;
     justify-content: flex-start;
     padding-top: 1rem;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
+}
+
+/* Style the search field */
+form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+  }
+  
+  /* Style the submit button */
+  form.example button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #dffaff;
+    background: #62c0ff;
+    color: rgb(70, 149, 201);
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+  }
+  
+  form.example button:hover {
+    background: #62c0ff;
+    background: #dffaff;
+    box-shadow: 1px 1px 20px rgb(255, 255, 255);
+  }
+  
+  /* Clear floats */
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .hidden{
+    display: none;
 }
