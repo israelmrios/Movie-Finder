@@ -1,0 +1,66 @@
+* {
+    font-family: "krungthep";
+    font-size: 15px;
+    color: rgb(83, 115, 204);
+}
+
+.title{
+    text-align: center;
+    font-size: 75px;
+}
+html {
+    /* background: linear-gradient(23deg, rgba(63,94,251,1) 2%, rgba(63,223,251,1) 100%);  */
+}
+
+body {
+    height: 100vh;
+    /* background: rgb(63,94,251);
+    background: linear-gradient(23deg, rgba(63,94,251,1) 2%, rgba(63,223,251,1) 100%);   */
+}
+
+h1{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-family: "krungthep";
+}
+
+header {
+    display: flex;
+
+}
+p {
+    padding-top: 2rem;
+    text-align: center;
+    text-decoration: underline;
+}
+
+div.columns {
+    padding-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pic {
+    padding-left: .2rem;
+    display: flex;
+    align-items: center;
+}
+
+div.checkers {
+    display: flex;
+    padding: auto;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
+}
+
+.search-region {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    padding-top: 1rem;
+}
