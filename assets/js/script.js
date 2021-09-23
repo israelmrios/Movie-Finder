@@ -16,6 +16,9 @@ function getMovieList(e) {
     e.preventDefault();
     var omdbRequestURL = "https://omdbapi.com/?s=" + $("#user-search").val() + "&apikey=405ba6dc";
     var userData = e.data;
+    // var searchRegion = document.getElementById("search-region")
+    // searchRegion.classList.add("hidden")
+    $("#movie-container").focus()
 
     fetch(omdbRequestURL)
         .then(function (res) {
@@ -32,7 +35,7 @@ function getMovieList(e) {
                 id: "movie-container",
                 class: "movie-container"
                 // add classes here
-            }).appendTo("#results");
+            }).appendTo("#search-region");
             
             // get movie info
             // for (var i = 0; i < data.Search.length; i++) 
@@ -134,3 +137,5 @@ $(function() {
 });
 
 
+//TODO: add plot to selection call from omdb
+//http://img.omdbapi.com/?apikey=" +key+ "&t=" + userInput + "&plot=short
