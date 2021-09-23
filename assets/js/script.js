@@ -12,10 +12,10 @@
 
 // TEST FUNCTIONS
 function getMovieList(e) {
+
     console.log("SUBMIT!");
     e.preventDefault();
     var omdbRequestURL = "https://omdbapi.com/?s=" + $("#user-search").val() + "&apikey=405ba6dc";
-    var userData = e.data;
     // var searchRegion = document.getElementById("search-region")
     // searchRegion.classList.add("hidden")
     $("#movie-container").focus()
@@ -28,7 +28,8 @@ function getMovieList(e) {
         .then(function(data) {
             console.log(data);
             console.log("Title:" + data.Search[0].Title + " " + data.Search[0].imdbID)
-            
+            if($("#movie-container").length)
+                $("#movie-container").empty()
             // display results here
             // create HTML here
             $("<div/>", {
@@ -71,12 +72,13 @@ function getMovieList(e) {
                 $("<p/>", {
                     // add style classes here
                 }).text(data.Search[i].Title + " " + data.Search[i].Year).appendTo("#media" + i);
-                userData.imdbID = data.Search[i].imdbID;
-                console.log("userData: " + userData.imdbID);
                 $("<button/>", {
                     id: "button" + i,
                     class: "button"
-                }).click(userData, getServices).appendTo("#media" + i);
+                }).click({title: data.Search[i].Title,
+                        imdbID: data.Search[i].imdbID, 
+                        poster: data.Search[i].Poster}, 
+                        getServices).appendTo("#media" + i);
                 
             }
         })
@@ -84,10 +86,21 @@ function getMovieList(e) {
 
 function getServices (e) {
     // Hide the cards continer
-    // $("#movie-container").hide();
+    $("#movie-container").addClass("hidden");
+    $("#results").removeClass("hidden");
+
 
     console.log("getServices");
-    console.log(e.data);
+    console.log(e.data.imdbID);
+
+    $("<img/>", {
+        src: e.data.poster,
+        alt: e.data.title
+    }).appendTo("#picture1");
+    $("<h2/>").html(e.data.title).appendTo("#movie-title");
+    // Add description here
+
+
 
     // fetch("https://gowatch.p.rapidapi.com/lookup/title/imdb_id", {
 	// "method": "POST",
@@ -103,7 +116,13 @@ function getServices (e) {
 	// }
     // })
     //     .then(function(data) {
-            
+                // Parse Data here ...#btn
+                
+                
+                // create an object that translates the intial part
+                // of the link to a easy to interpret string.
+                // OR store the first parts of the HTML link as an object
+                // then compare that to the results from the goWatch API
     //     })
 
     
@@ -127,13 +146,7 @@ function redirect(e) {
 
 $(function() {
     console.log("Ready!");
-    $("#btn").click({
-        param1: $("#hulu").is(":checked"), 
-        param2: $("#hbomax").is(":checked"),
-        param3: $("#netflix").is(":checked"),
-        param4: $("#disney").is(":checked"),
-        param5: $("#primevideo").is(":checked"),
-        param6: $("#googleplay").is(":checked")}, getMovieList)
+    $("#btn").click(getMovieList)
 });
 
 

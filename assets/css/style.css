@@ -2,8 +2,11 @@
     font-family: 'Russo One', sans-serif;
     font-size: 15px;
     color: rgb(255, 255, 255);
-    
+    /* border: 2px solid red; */
 }
+
+
+
 
 .title{
     text-align: center;
@@ -21,6 +24,12 @@ h1{
     align-content: center;
     justify-content: center;
     font-family: 'Russo One', sans-serif;
+}
+
+h2{
+    font-size: 5rem;
+    text-shadow: 1px 1px 10px black;
+    text-decoration: underline;
 }
 
 header {
@@ -58,7 +67,7 @@ div.checkers {
     
 }
 
-.search-region {
+.search-region, .results {
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -112,10 +121,6 @@ form.example input[type=text] {
     display: table;
 }
 
-  .hidden{
-    display: none;
-}
-
 .movie-container {
     display: flex;
     justify-content: space-evenly;
@@ -144,6 +149,11 @@ form.example input[type=text] {
     
 }
 
+div.columns {
+    margin: 0px 1rem;
+    height: 60vh;
+}
+
 
 
 .card-image:first-child img {
@@ -159,3 +169,41 @@ form.example input[type=text] {
     border-bottom-right-radius: .7rem;
 }
 
+.picture-cars {
+    display: flex;
+    height: 100%;
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    /* height: 100%; */
+    gap: 50px;
+    background: linear-gradient(35deg, rgba(2, 2, 14, 0.521), rgba(209, 235, 253, 0.562));
+    
+}
+
+.description-card p {
+    font-size: 30px;
+}
+
+  .hidden{
+    display: none;
+}
+/*buttons in selected movie*/
+
+.button1 {background-color: #f44336;} /* Red */
+
+.button2 {background-color: black; color: rgb(1, 255, 1)} /* Green */
+
+.button3 {background-color: rgb(54, 150, 240)} /* purple */
+
+.butt {
+    width: 10rem;
+    height: 5rem;
+    border-radius: 1rem;
+    font-family: 'Russo One', sans-serif;
+    font-size: 20px;
+    
+}
