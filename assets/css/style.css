@@ -59,7 +59,7 @@ div.checkers {
 }
 
 .search-region {
-    height: 60vh;
+    height: 30vh;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -115,3 +115,28 @@ form.example input[type=text] {
   .hidden{
     display: none;
 }
+
+
+
+.movie-container {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 10px 50px;
+
+
+}
+
+
+
+.card {
+    
+    margin: 0px;
+    padding: 0px;
+    width: 30%;
+    
+    
+}
+
+

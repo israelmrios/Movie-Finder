@@ -29,12 +29,14 @@ function getMovieList(e) {
             // display results here
             // create HTML here
             $("<div/>", {
-                id: "movie-container"
+                id: "movie-container",
+                class: "movie-container"
                 // add classes here
-            }).appendTo("#col-container");
+            }).appendTo("#results");
             
             // get movie info
-            for (var i = 0; i < data.Search.length; i++) {
+            // for (var i = 0; i < data.Search.length; i++) 
+            for (var i = 0; i < data.Search.length; i++){
                 // main card
                 $("<div/>", {
                     id: "card" + i,
@@ -130,3 +132,5 @@ $(function() {
         param5: $("#primevideo").is(":checked"),
         param6: $("#googleplay").is(":checked")}, getMovieList)
 });
+
+
