@@ -56,7 +56,7 @@ function getMovieList(e) {
                 }).text(data.Search[i].Title + " " + data.Search[i].Year).appendTo("#media" + i);
                 $("<button/>", {
                     id: "button" + i,
-
+                    
                     class: "button",
                     text: "This one!"
                 }).click({title: data.Search[i].Title,
