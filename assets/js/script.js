@@ -1,10 +1,13 @@
 function getMovieList(e) {
 
+
     console.log("SUBMIT!");
     e.preventDefault();
     var omdbRequestURL = "https://omdbapi.com/?s=" + $("#user-search").val() + "&apikey=405ba6dc";
     $("#movie-container").focus()
 
+    $("#movie-container").removeClass("hidden")
+    $("#results").addClass("hidden")
     fetch(omdbRequestURL)
         .then(function (res) {
             console.log(res.status);
@@ -15,6 +18,7 @@ function getMovieList(e) {
             console.log("Title:" + data.Search[0].Title + " " + data.Search[0].imdbID)
             if ($("#movie-container").length)
                 $("#movie-container").empty()
+
             // display results here
             // create HTML here
             $("<div/>", {
@@ -59,11 +63,13 @@ function getMovieList(e) {
                     
                     class: "button",
                     text: "This one!"
-                }).click({title: data.Search[i].Title,
-                        imdbID: data.Search[i].imdbID, 
-                        poster: data.Search[i].Poster}, 
-                        getServices).appendTo("#media" + i);
-                
+                }).click({
+                    title: data.Search[i].Title,
+                    imdbID: data.Search[i].imdbID,
+                    poster: data.Search[i].Poster
+                },
+                    getServices).appendTo("#media" + i);
+
 
             }
         });
@@ -73,6 +79,9 @@ function getServices(e) {
     // Hide the cards continer
     $("#movie-container").addClass("hidden");
     $("#results").removeClass("hidden");
+    if ($("#picture1").length)
+        $("#picture1, #description, #movie-title").empty()
+
 
     // get plot point
     var plotURL = "http://omdbapi.com/?i=" + e.data.imdbID + "&plot=full&r=json&apikey=405ba6dc&"
