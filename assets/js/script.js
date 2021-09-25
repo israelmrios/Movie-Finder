@@ -63,7 +63,7 @@ function getMovieList(e) {
                         getServices).appendTo("#media" + i);
                 
             }
-        })
+        });
 }
 
 function getServices (e) {
@@ -72,17 +72,17 @@ function getServices (e) {
     $("#results").removeClass("hidden");
 
     // get plot point
-    var plotURL = "http://img.omdbapi.com/?apikey=405ba6dc&t=" + e.data.imdbID + "&plot=short"
+    var plotURL = "http://omdbapi.com/?i=" + e.data.imdbID + "&plot=full&r=json&apikey=405ba6dc&"
     fetch(plotURL)
         .then(function(res) {
+            console.log(res);
             return res.json();
         })
         .then(function(data) {
-            
+            $("<p/>", {
+                id: "movie-text"
+            }).text(data.Plot).appendTo("#description");
         })
-
-    console.log("getServices");
-    console.log(e.data.imdbID);
 
     $("<img/>", {
         src: e.data.poster,
@@ -126,6 +126,7 @@ function getServices (e) {
 
 function parseResults(servicesArray) {
     // write object with service names, for loop, compare, return object
+    
 }
 
 
@@ -140,5 +141,4 @@ $(function() {
 });
 
 
-//TODO: add plot to selection call from omdb
-//http://img.omdbapi.com/?apikey=" +key+ "&t=" + userInput + "&plot=short
+//TODO: 
