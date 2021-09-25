@@ -1,22 +1,8 @@
-// relevant aps
-//  www.omdbapi.com - use this to get search results
-//  once we have 3 search results post that to the user
-// when the user clicks on the movie
-// link pass the imdb_id to the gowatch
-
-
-// 1. User clicks on checkboxes
-// 2. we display the avaliable movies
-
-
-// TEST FUNCTIONS
 function getMovieList(e) {
 
     console.log("SUBMIT!");
     e.preventDefault();
     var omdbRequestURL = "https://omdbapi.com/?s=" + $("#user-search").val() + "&apikey=405ba6dc";
-    // var searchRegion = document.getElementById("search-region")
-    // searchRegion.classList.add("hidden")
     $("#movie-container").focus()
 
     fetch(omdbRequestURL)
@@ -34,11 +20,8 @@ function getMovieList(e) {
             $("<div/>", {
                 id: "movie-container",
                 class: "movie-container"
-                // add classes here
             }).appendTo("#search-region");
             
-            // get movie info
-            // for (var i = 0; i < data.Search.length; i++) 
             for (var i = 0; i < data.Search.length; i++){
                 // main card
                 $("<div/>", {
@@ -80,7 +63,7 @@ function getMovieList(e) {
                         getServices).appendTo("#media" + i);
                 
             }
-        })
+        });
 }
 
 function getServices (e) {
@@ -88,9 +71,18 @@ function getServices (e) {
     $("#movie-container").addClass("hidden");
     $("#results").removeClass("hidden");
 
-
-    console.log("getServices");
-    console.log(e.data.imdbID);
+    // get plot point
+    var plotURL = "http://omdbapi.com/?i=" + e.data.imdbID + "&plot=full&r=json&apikey=405ba6dc&"
+    fetch(plotURL)
+        .then(function(res) {
+            console.log(res);
+            return res.json();
+        })
+        .then(function(data) {
+            $("<p/>", {
+                id: "movie-text"
+            }).text(data.Plot).appendTo("#description");
+        })
 
     $("<img/>", {
         src: e.data.poster,
@@ -98,8 +90,6 @@ function getServices (e) {
     }).appendTo("#picture1");
     $("<h2/>").html(e.data.title).appendTo("#movie-title");
     // Add description here
-
-
 
     // fetch("https://gowatch.p.rapidapi.com/lookup/title/imdb_id", {
 	// "method": "POST",
@@ -125,6 +115,7 @@ function getServices (e) {
     //     })
 
     
+    
     // now compare the results to the user selected filters (if any)
     // if it's not on the platform suggest the ones it's on
 
@@ -135,6 +126,7 @@ function getServices (e) {
 
 function parseResults(servicesArray) {
     // write object with service names, for loop, compare, return object
+    
 }
 
 
@@ -157,5 +149,4 @@ $(function() {
 });
 
 
-//TODO: add plot to selection call from omdb
-//http://img.omdbapi.com/?apikey=" +key+ "&t=" + userInput + "&plot=short
+//TODO: 
