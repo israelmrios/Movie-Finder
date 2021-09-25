@@ -1,23 +1,7 @@
-// relevant aps
-//  www.omdbapi.com - use this to get search results
-//  once we have 3 search results post that to the user
-// when the user clicks on the movie
-// link pass the imdb_id to the gowatch
-
-
-// 1. User clicks on checkboxes
-// 2. we display the avaliable movies
-
-
-
-// TEST FUNCTIONS
 function getMovieList(e) {
     console.log("SUBMIT!");
     e.preventDefault();
     var omdbRequestURL = "https://omdbapi.com/?s=" + $("#user-search").val() + "&apikey=405ba6dc";
-    var userData = e.data;
-    // var searchRegion = document.getElementById("search-region")
-    // searchRegion.classList.add("hidden")
     $("#movie-container").focus()
 
     fetch(omdbRequestURL)
@@ -29,16 +13,11 @@ function getMovieList(e) {
             console.log(data);
             console.log("Title:" + data.Search[0].Title + " " + data.Search[0].imdbID)
             
-            // display results here
-            // create HTML here
             $("<div/>", {
                 id: "movie-container",
                 class: "movie-container"
-                // add classes here
             }).appendTo("#search-region");
             
-            // get movie info
-            // for (var i = 0; i < data.Search.length; i++) 
             for (var i = 0; i < data.Search.length; i++){
                 // main card
                 $("<div/>", {
@@ -71,12 +50,10 @@ function getMovieList(e) {
                 $("<p/>", {
                     // add style classes here
                 }).text(data.Search[i].Title + " " + data.Search[i].Year).appendTo("#media" + i);
-                userData.imdbID = data.Search[i].imdbID;
-                console.log("userData: " + userData.imdbID);
                 $("<button/>", {
                     id: "button" + i,
                     class: "button"
-                }).click(userData, getServices).appendTo("#media" + i);
+                }).click({param1: data.Search[i].imdbID}, getServices).appendTo("#media" + i);
                 
             }
         })
@@ -84,10 +61,28 @@ function getMovieList(e) {
 
 function getServices (e) {
     // Hide the cards continer
-    // $("#movie-container").hide();
+    $("#movie-container").addClass("hidden");
+    $("#results").removeClass("hidden");
+
+    // get plot point
+    var plotURL = "http://img.omdbapi.com/?apikey=405ba6dc&t=" + e.data.imdbID + "&plot=short"
+    fetch(plotURL)
+        .then(function(res) {
+            return res.json();
+        })
+        .then(function(data) {
+            
+        })
 
     console.log("getServices");
-    console.log(e.data);
+    console.log(e.data.imdbID);
+
+    $("<img/>", {
+        src: e.data.poster,
+        alt: e.data.title
+    }).appendTo("#picture1");
+    $("<h2/>").html(e.data.title).appendTo("#movie-title");
+    // Add description here
 
     // fetch("https://gowatch.p.rapidapi.com/lookup/title/imdb_id", {
 	// "method": "POST",
@@ -103,9 +98,16 @@ function getServices (e) {
 	// }
     // })
     //     .then(function(data) {
-            
+                // Parse Data here ...#btn
+                
+                
+                // create an object that translates the intial part
+                // of the link to a easy to interpret string.
+                // OR store the first parts of the HTML link as an object
+                // then compare that to the results from the goWatch API
     //     })
 
+    
     
     // now compare the results to the user selected filters (if any)
     // if it's not on the platform suggest the ones it's on
@@ -127,13 +129,7 @@ function redirect(e) {
 
 $(function() {
     console.log("Ready!");
-    $("#btn").click({
-        param1: $("#hulu").is(":checked"), 
-        param2: $("#hbomax").is(":checked"),
-        param3: $("#netflix").is(":checked"),
-        param4: $("#disney").is(":checked"),
-        param5: $("#primevideo").is(":checked"),
-        param6: $("#googleplay").is(":checked")}, getMovieList)
+    $("#btn").click(getMovieList)
 });
 
 
