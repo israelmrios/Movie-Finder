@@ -10,10 +10,10 @@ function getMovieList(e) {
             console.log(res.status);
             return res.json();
         })
-        .then(function(data) {
+        .then(function (data) {
             console.log(data);
             console.log("Title:" + data.Search[0].Title + " " + data.Search[0].imdbID)
-            if($("#movie-container").length)
+            if ($("#movie-container").length)
                 $("#movie-container").empty()
             // display results here
             // create HTML here
@@ -21,12 +21,12 @@ function getMovieList(e) {
                 id: "movie-container",
                 class: "movie-container"
             }).appendTo("#search-region");
-            
-            for (var i = 0; i < data.Search.length; i++){
+
+            for (var i = 0; i < data.Search.length; i++) {
                 // main card
                 $("<div/>", {
                     id: "card" + i,
-                    class: "card" 
+                    class: "card"
                 }).appendTo("#movie-container");
                 // image container
                 $("<div/>", {
@@ -57,16 +57,18 @@ function getMovieList(e) {
                 $("<button/>", {
                     id: "button" + i,
                     class: "button"
-                }).click({title: data.Search[i].Title,
-                        imdbID: data.Search[i].imdbID, 
-                        poster: data.Search[i].Poster}, 
-                        getServices).appendTo("#media" + i);
-                
+                }).click({
+                    title: data.Search[i].Title,
+                    imdbID: data.Search[i].imdbID,
+                    poster: data.Search[i].Poster
+                },
+                    getServices).appendTo("#media" + i);
+
             }
         });
 }
 
-function getServices (e) {
+function getServices(e) {
     // Hide the cards continer
     $("#movie-container").addClass("hidden");
     $("#results").removeClass("hidden");
@@ -74,11 +76,11 @@ function getServices (e) {
     // get plot point
     var plotURL = "http://omdbapi.com/?i=" + e.data.imdbID + "&plot=full&r=json&apikey=405ba6dc&"
     fetch(plotURL)
-        .then(function(res) {
+        .then(function (res) {
             console.log(res);
             return res.json();
         })
-        .then(function(data) {
+        .then(function (data) {
             $("<p/>", {
                 id: "movie-text"
             }).text(data.Plot).appendTo("#description");
@@ -92,30 +94,30 @@ function getServices (e) {
     // Add description here
 
     // fetch("https://gowatch.p.rapidapi.com/lookup/title/imdb_id", {
-	// "method": "POST",
-	// "headers": {
-	// 	"content-type": "application/x-www-form-urlencoded",
-	// 	"x-rapidapi-host": "gowatch.p.rapidapi.com",
-	// 	"x-rapidapi-key": "f23c6f8922msh66c1e577a5d9a54p1f699djsn591541dac664"
-	// },
-	// "body": {
-	// 	"id": e.data.imdbID, // check this
-	// 	"type": "movie",
-	// 	"country": "us"
-	// }
+    // "method": "POST",
+    // "headers": {
+    // 	"content-type": "application/x-www-form-urlencoded",
+    // 	"x-rapidapi-host": "gowatch.p.rapidapi.com",
+    // 	"x-rapidapi-key": "f23c6f8922msh66c1e577a5d9a54p1f699djsn591541dac664"
+    // },
+    // "body": {
+    // 	"id": e.data.imdbID, // check this
+    // 	"type": "movie",
+    // 	"country": "us"
+    // }
     // })
     //     .then(function(data) {
-                // Parse Data here ...#btn
-                
-                
-                // create an object that translates the intial part
-                // of the link to a easy to interpret string.
-                // OR store the first parts of the HTML link as an object
-                // then compare that to the results from the goWatch API
+    // Parse Data here ...#btn
+
+
+    // create an object that translates the intial part
+    // of the link to a easy to interpret string.
+    // OR store the first parts of the HTML link as an object
+    // then compare that to the results from the goWatch API
     //     })
 
-    
-    
+
+
     // now compare the results to the user selected filters (if any)
     // if it's not on the platform suggest the ones it's on
 
@@ -126,7 +128,7 @@ function getServices (e) {
 
 function parseResults(servicesArray) {
     // write object with service names, for loop, compare, return object
-    
+
 }
 
 
@@ -139,11 +141,11 @@ function redirect(e) {
 //     location.reload()
 // };
 
-$("#return").click(function() {
+$("#return").click(function () {
     location.reload()
 });
 
-$(function() {
+$(function () {
     console.log("Ready!");
     $("#btn").click(getMovieList)
 });

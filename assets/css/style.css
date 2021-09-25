@@ -194,8 +194,13 @@ div.columns {
     
 }
 
+#movie-text {
+    overflow-x: auto;
+}
+
 .description-card p {
-    font-size: 30px;
+    text-decoration: none;
+    font-size: 20px;
 }
 
   .hidden{
