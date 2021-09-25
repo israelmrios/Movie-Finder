@@ -12,6 +12,7 @@
     text-align: center;
     font-size: 75px;
     text-shadow: 2px .5px 5px rgb(43, 43, 43);
+    cursor: pointer;
 }
 
 body {

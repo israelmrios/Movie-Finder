@@ -9,7 +9,6 @@
 // 2. we display the avaliable movies
 
 
-
 // TEST FUNCTIONS
 function getMovieList(e) {
 
@@ -143,6 +142,14 @@ function redirect(e) {
     // display available movie links, compare this to user request
 
 }
+
+// function reload(){
+//     location.reload()
+// };
+
+$("#return").click(function() {
+    location.reload()
+});
 
 $(function() {
     console.log("Ready!");
