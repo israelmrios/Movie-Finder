@@ -67,8 +67,15 @@ div.checkers {
     
 }
 
-.search-region, .results {
+.search-region {
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    padding-top: 1rem;
+}
+.results {
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -142,7 +149,7 @@ form.example input[type=text] {
     
     margin: 0px;
     padding: 0px;
-    width: 30%;
+    width: 28%;
     border: 3px solid black;
     border-radius: 1rem;
     
@@ -171,6 +178,7 @@ div.columns {
 
 .picture-cars {
     display: flex;
+    justify-content: center;
     height: 100%;
 }
 
@@ -178,8 +186,9 @@ div.columns {
     display: flex;
     flex-direction: column;
     text-align: center;
-    /* height: 100%; */
     gap: 50px;
+    margin-top: 10rem;
+    padding-bottom: 5rem;
     background: linear-gradient(35deg, rgba(2, 2, 14, 0.521), rgba(209, 235, 253, 0.562));
     
 }
