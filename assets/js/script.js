@@ -1,4 +1,5 @@
 function getMovieList(e) {
+
     console.log("SUBMIT!");
     e.preventDefault();
     var omdbRequestURL = "https://omdbapi.com/?s=" + $("#user-search").val() + "&apikey=405ba6dc";
@@ -12,7 +13,10 @@ function getMovieList(e) {
         .then(function(data) {
             console.log(data);
             console.log("Title:" + data.Search[0].Title + " " + data.Search[0].imdbID)
-            
+            if($("#movie-container").length)
+                $("#movie-container").empty()
+            // display results here
+            // create HTML here
             $("<div/>", {
                 id: "movie-container",
                 class: "movie-container"
@@ -53,7 +57,10 @@ function getMovieList(e) {
                 $("<button/>", {
                     id: "button" + i,
                     class: "button"
-                }).click({param1: data.Search[i].imdbID}, getServices).appendTo("#media" + i);
+                }).click({title: data.Search[i].Title,
+                        imdbID: data.Search[i].imdbID, 
+                        poster: data.Search[i].Poster}, 
+                        getServices).appendTo("#media" + i);
                 
             }
         })
