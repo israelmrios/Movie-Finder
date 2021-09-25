@@ -91,6 +91,20 @@ div.checkers {
     width: 5rem;
 }
 
+/* This styling is for the buttons sown in the search list */
+div.media-content button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: #dffaff;
+    background: #62c0ff;
+    color: rgb(70, 149, 201);
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+}
+
 /* Style the search field */
 form.example input[type=text] {
     padding: 10px;
@@ -136,25 +150,18 @@ form.example input[type=text] {
     flex-wrap: wrap;
     margin: 10px 50px;
     overflow-x: auto;
-
-
 }
 
 .card-content {
     background: linear-gradient(rgb(236, 230, 230), rgb(29, 105, 177));
 }
 
-
 .card {
-    
-    
     margin: 0px;
     padding: 0px;
     width: 28%;
     border: 3px solid black;
     border-radius: 1rem;
-    
-    
 }
 
 div.columns {
@@ -162,12 +169,14 @@ div.columns {
     height: 60vh;
 }
 
-
+/* Adding a radius to the final image after selecting correct movie */
+div.picture-cars img {
+    border-radius: 10px;
+}
 
 .card-image:first-child img {
     border-top-left-radius: .7rem;
     border-top-right-radius: .7rem;
-    
 }
 
 .card-content:last-child,
