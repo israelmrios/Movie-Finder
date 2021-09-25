@@ -135,6 +135,14 @@ function redirect(e) {
 
 }
 
+// function reload(){
+//     location.reload()
+// };
+
+$("#return").click(function() {
+    location.reload()
+});
+
 $(function() {
     console.log("Ready!");
     $("#btn").click(getMovieList)
