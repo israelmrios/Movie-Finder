@@ -86,8 +86,7 @@ function getServices(e) {
     // get plot point
     var plotURL = "http://omdbapi.com/?i=" + e.data.imdbID + "&plot=full&r=json&apikey=405ba6dc&"
     fetch(plotURL)
-        .then(function (res) {
-            console.log(res);
+        .then(function(res) {
             return res.json();
         })
         .then(function (data) {
@@ -101,57 +100,54 @@ function getServices(e) {
         alt: e.data.title
     }).appendTo("#picture1");
     $("<h2/>").html(e.data.title).appendTo("#movie-title");
-    // Add description here
 
-    // fetch("https://gowatch.p.rapidapi.com/lookup/title/imdb_id", {
-    // "method": "POST",
-    // "headers": {
-    // 	"content-type": "application/x-www-form-urlencoded",
-    // 	"x-rapidapi-host": "gowatch.p.rapidapi.com",
-    // 	"x-rapidapi-key": "f23c6f8922msh66c1e577a5d9a54p1f699djsn591541dac664"
-    // },
-    // "body": {
-    // 	"id": e.data.imdbID, // check this
-    // 	"type": "movie",
-    // 	"country": "us"
-    // }
-    // })
-    //     .then(function(data) {
-    // Parse Data here ...#btn
-
-
-    // create an object that translates the intial part
-    // of the link to a easy to interpret string.
-    // OR store the first parts of the HTML link as an object
-    // then compare that to the results from the goWatch API
-    //     })
-
-
-
-    // now compare the results to the user selected filters (if any)
-    // if it's not on the platform suggest the ones it's on
-
-    // parse result array here
-
-
+    fetch("https://gowatch.p.rapidapi.com/lookup/title/imdb_id", {
+	    method: "POST",
+	    headers: {
+	    "content-type": "application/x-www-form-urlencoded",
+	    "x-rapidapi-host": "gowatch.p.rapidapi.com",
+	    "x-rapidapi-key": "f23c6f8922msh66c1e577a5d9a54p1f699djsn591541dac664"
+	    },
+	    body: JSON.stringify({
+		    id: e.data.imdbID,
+		    type: "movie",
+		    country: "us"
+	    })
+    })
+    .then(function(res) {
+        console.log(res.status)
+        return res.json();
+    })
+    .then(function(data) {
+        console.log(data);
+        parseResults(data.offers);
+    })
 }
 
 function parseResults(servicesArray) {
+    var service, serviceURL;
+    var buttonArray = [];
     // write object with service names, for loop, compare, return object
-
+    for (var i = 0; i < servicesArray.length; i++) {
+        if ((servicesArray[i].buy === 0 && servicesArray[i].rent === 0 && servicesArray[i].channel === null) && servicesArray[i].collection_name !== "The") {
+            console.log(servicesArray[i].url)
+            service = servicesArray[i].url.split(".")[1]; // test this
+            service = service.charAt(0).toUpperCase() + service.slice(1);
+            console.log(service);
+            serviceURL = servicesArray[i].url;
+            $("<button/>", {
+                class: service,
+                id: "button" + i
+            }).html(service).val(serviceURL).click(link).appendTo("#stream-btns")
+        }
+    }
 }
 
-
-function redirect(e) {
-    // display available movie links, compare this to user request
-
+function link(e) {
+    window.open(e.target.value, "_blank");
 }
 
-// function reload(){
-//     location.reload()
-// };
-
-$("#return").click(function () {
+$("#return").click(function() {
     location.reload()
 });
 
@@ -159,6 +155,3 @@ $(function () {
     console.log("Ready!");
     $("#btn").click(getMovieList)
 });
-
-
-//TODO: 
