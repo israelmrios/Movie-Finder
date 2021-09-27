@@ -39,7 +39,7 @@ header {
 }
 
 p {
-    padding-top: 2rem;
+
     font-size: large;
     text-align: center;
     text-decoration: underline;
@@ -91,6 +91,20 @@ div.checkers {
     width: 5rem;
 }
 
+/* This styling is for the buttons sown in the search list */
+div.media-content button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: #dffaff;
+    background: #62c0ff;
+    
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+}
+
 /* Style the search field */
 form.example input[type=text] {
     padding: 10px;
@@ -117,7 +131,7 @@ form.example input[type=text] {
   
   form.example button:hover {
     background: #62c0ff;
-    background: #dffaff;
+    background: #83ecff;
     box-shadow: 1px 1px 20px rgb(255, 255, 255);
     transition: 0.1s;
 }
@@ -136,38 +150,29 @@ form.example input[type=text] {
     flex-wrap: wrap;
     margin: 10px 50px;
     overflow-x: auto;
-
-
 }
 
 .card-content {
-    background: linear-gradient(rgb(236, 230, 230), rgb(29, 105, 177));
+    background: radial-gradient(circle, rgba(148,187,233,1) -7%, rgba(127,165,202,1) 11%, rgba(41,88,112,1) 100%);
 }
 
-
 .card {
-    
-    
     margin: 0px;
     padding: 0px;
     width: 28%;
     border: 3px solid black;
     border-radius: 1rem;
-    
-    
-}
-
-div.columns {
-    margin: 0px 1rem;
-    height: 60vh;
 }
 
 
+/* Adding a radius to the final image after selecting correct movie */
+div.picture-cars img {
+    border-radius: 10px;
+}
 
 .card-image:first-child img {
     border-top-left-radius: .7rem;
     border-top-right-radius: .7rem;
-    
 }
 
 .card-content:last-child,
@@ -187,15 +192,21 @@ div.columns {
     display: flex;
     flex-direction: column;
     text-align: center;
-    gap: 50px;
-    margin-top: 10rem;
-    padding-bottom: 5rem;
+    margin-right: 3.5rem;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 10px black;
+    padding-bottom: 2rem;
     background: linear-gradient(35deg, rgba(2, 2, 14, 0.521), rgba(209, 235, 253, 0.562));
     
 }
 
+#movie-text {
+    overflow-x: auto;
+}
+
 .description-card p {
-    font-size: 30px;
+    text-decoration: none;
+    font-size: 12px;
 }
 
   .hidden{
@@ -203,17 +214,37 @@ div.columns {
 }
 /*buttons in selected movie*/
 
-.button1 {background-color: #f44336;} /* Red */
+.Netflix {background-color: #c73b31;} /* Red */
 
-.button2 {background-color: black; color: rgb(1, 255, 1)} /* Green */
+.Hulu {background-color: black; color: rgb(0, 224, 0)} /* Green */
 
-.button3 {background-color: rgb(54, 150, 240)} /* purple */
+.Hbomax {background-color: rgb(104, 54, 240)} /* purple */
+
+.Apple {background-color: rgb(0, 0, 0);
+        
+}
+
+.Amazon {background-color: rgb(39, 48, 75)}
+
+.Disneyplus {background-color: rgb(30, 30, 59)}
+
+.button {
+    color: whitesmoke;
+}
 
 .butt {
-    width: 10rem;
-    height: 5rem;
-    border-radius: 1rem;
+    width: 7rem;
+    height: 3rem;
+    border-radius: .5rem;
     font-family: 'Russo One', sans-serif;
-    font-size: 20px;
+    font-size: 15px;
+    opacity: .8;
     
+}
+
+
+.butt:hover {
+    opacity: 1;
+    box-shadow: 1px 1px 20px rgb(255, 255, 255);
+    transition: 0.1s;
 }
