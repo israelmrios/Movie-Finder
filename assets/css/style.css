@@ -157,9 +157,11 @@ form.example input[type=text] {
 }
 
 .card {
+
+    object-fit: fill;
     margin: 0px;
     padding: 0px;
-    width: 28%;
+    width: 30%;
     border: 3px solid black;
     border-radius: 1rem;
 }
@@ -242,6 +244,12 @@ div.picture-cars img {
     
 }
 
+.noResultz {
+    font-size: 20px;
+    color: rgb(204, 53, 27);
+    text-align: center;
+    /* text-shadow: 0px 0px 5px rgb(0, 0, 0); */
+}
 
 .butt:hover {
     opacity: 1;
