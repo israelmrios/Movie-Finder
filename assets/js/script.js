@@ -5,6 +5,11 @@ var AydinKey = "5cfd71de82msh5e735751f442143p1e03bcjsn78a94c1d0a36"
 
 function getMovieList(e) {
     e.preventDefault();
+    //!!!!only clears once!!!!
+    if ($("#noResultOmdb").length)
+        $("#noResultOmdb").empty()
+
+
     var omdbRequestURL = "https://omdbapi.com/?s=" + $("#user-search").val() + "&type=movie&apikey=405ba6dc";
     $("#noResults").addClass("hidden");
     $("#noResultOmdb").addClass("hidden");
@@ -18,14 +23,17 @@ function getMovieList(e) {
         })
         .then(function (data) {
             console.log(data.Response);
+
             if (data.Response === "False") {
                 $("<div/>", {
                     id: "noResultOmdb",
                     class: "noResultz"
-                }).text("Sorry this movie is not available in any of the top 6 streaming services. Please try a different movie.").appendTo("#search-region");
+                }).text("Sorry we couldn't find the movie you were looking for. Please check your spelling").appendTo("#search-region");
+                if ($("#movie-container").length)
+                    $("#movie-container").empty()
                 return;
             }
-
+            $("#noResultOmdb").addClass("hidden");
             if ($("#movie-container").length)
                 $("#movie-container").empty()
             // display results here
@@ -34,6 +42,7 @@ function getMovieList(e) {
                 id: "movie-container",
                 class: "movie-container"
             }).appendTo("#search-region");
+
 
             for (var i = 0; i < data.Search.length; i++) {
                 // main card
@@ -122,7 +131,7 @@ function getServices(e) {
         headers: {
             "content-type": "application/x-www-form-urlencoded",
             "x-rapidapi-host": "gowatch.p.rapidapi.com",
-            "x-rapidapi-key": JBKey
+            "x-rapidapi-key": AydinKey
         },
         body: JSON.stringify({
             id: e.data.imdbID,
